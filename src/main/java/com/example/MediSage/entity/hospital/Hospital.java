@@ -1,10 +1,13 @@
 package com.example.MediSage.entity.hospital;
 
+import com.example.MediSage.entity.doctor.Doctor;
 import com.example.MediSage.generic.model.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "hospitals")
@@ -25,6 +28,8 @@ public class Hospital extends BaseEntity {
 
     @Column(name = "address", columnDefinition = "TEXT")
     private String address;
+
+    private String picture;
 
     @Column(name = "city", length = 100)
     private String city;
@@ -53,5 +58,9 @@ public class Hospital extends BaseEntity {
 
     @Column(name = "established_year")
     private Integer establishedYear;
+
+    @ManyToMany(mappedBy = "hospitals")
+    private Set<Doctor> doctors = new HashSet<>();
+
 }
 
