@@ -1,4 +1,9 @@
 package com.example.MediSage.repository.patients;
 
-public interface PatientsRepository {
+import com.example.MediSage.entity.patients.Patients;
+import com.example.MediSage.generic.repository.AbstractRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface PatientsRepository extends AbstractRepository<Patients> {
 }
