@@ -1,4 +1,6 @@
 package com.example.MediSage.payload.request;
 
-public class AppointmentRequestDTO {
+import com.example.MediSage.generic.payload.request.IDto;
+
+public class AppointmentRequestDTO implements IDto {
 }

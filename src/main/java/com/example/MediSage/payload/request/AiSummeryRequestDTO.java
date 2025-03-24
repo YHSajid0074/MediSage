@@ -1,4 +1,6 @@
 package com.example.MediSage.payload.request;
 
-public class AiSummeryRequestDTO {
+import com.example.MediSage.generic.payload.request.IDto;
+
+public class AiSummeryRequestDTO implements IDto {
 }

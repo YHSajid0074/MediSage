@@ -1,4 +1,40 @@
 package com.example.MediSage.service.impl;
 
-public class DoctorServiceIMPL {
+import com.example.MediSage.entity.doctor.Doctor;
+import com.example.MediSage.generic.payload.request.GenericSearchDto;
+import com.example.MediSage.generic.payload.response.BaseResponseDto;
+import com.example.MediSage.generic.repository.AbstractRepository;
+import com.example.MediSage.generic.service.AbstractService;
+import com.example.MediSage.payload.request.DoctorRequestDTO;
+import com.example.MediSage.service.DoctorService;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Service;
+
+import java.io.IOException;
+
+@Service
+public class DoctorServiceIMPL extends AbstractService<Doctor, DoctorRequestDTO, GenericSearchDto> implements DoctorService {
+    public DoctorServiceIMPL(AbstractRepository<Doctor> repository) {
+        super(repository);
+    }
+
+    @Override
+    protected <T extends BaseResponseDto> T convertToResponseDto(Doctor doctor) {
+        return null;
+    }
+
+    @Override
+    protected Doctor convertToEntity(DoctorRequestDTO doctorRequestDTO) throws IOException {
+        return null;
+    }
+
+    @Override
+    protected Doctor updateEntity(DoctorRequestDTO doctorRequestDTO, Doctor entity) throws IOException {
+        return null;
+    }
+
+    @Override
+    protected Specification<Doctor> buildSpecification(GenericSearchDto searchDto) {
+        return null;
+    }
 }
