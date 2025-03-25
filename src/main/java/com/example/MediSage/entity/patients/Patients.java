@@ -8,6 +8,7 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "patients")
@@ -68,6 +69,6 @@ public class Patients extends BaseEntity {
     @OneToOne(mappedBy = "patient", cascade = CascadeType.ALL)
     private Appointment appointment;
 
-    @OneToOne(mappedBy = "patient", cascade = CascadeType.ALL)
-    private AiSummary aiSummary;
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<AiSummary> aiSummaries;
 }

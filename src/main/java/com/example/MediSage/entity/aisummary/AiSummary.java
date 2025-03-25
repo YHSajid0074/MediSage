@@ -16,8 +16,8 @@ public class AiSummary extends BaseEntity {
     @Column(name = "summary_text", columnDefinition = "TEXT")
     private String summaryText;
 
-    @OneToOne
-    @JoinColumn(name = "patient_id", referencedColumnName = "id", unique = true)
+    @ManyToOne
+    @JoinColumn(name = "patient_id", referencedColumnName = "id")
     private Patients patient;
 }
 
