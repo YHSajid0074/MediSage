@@ -67,6 +67,7 @@ public class UserServiceIMPL implements UserService {
             return "Invalid OTP! Please try again.";
         }
 
+
         if (tempUser == null || !tempUser.getEmail().equals(email)) {
             return "No user data found. Please register again.";
         }
