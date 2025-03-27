@@ -6,7 +6,9 @@ import com.example.MediSage.generic.payload.response.BaseResponseDto;
 import com.example.MediSage.generic.repository.AbstractRepository;
 import com.example.MediSage.generic.service.AbstractService;
 import com.example.MediSage.payload.request.HospitalRequestDTO;
+import com.example.MediSage.payload.response.HospitalResponseDTO;
 import com.example.MediSage.service.HospitalService;
+import org.hibernate.sql.Update;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -19,18 +21,21 @@ public class HospitalServiceIMPL extends AbstractService<Hospital, HospitalReque
     }
 
     @Override
-    protected <T extends BaseResponseDto> T convertToResponseDto(Hospital hospital) {
-        return null;
+    protected HospitalResponseDTO convertToResponseDto(Hospital hospital) {
+        HospitalResponseDTO hospitalResponseDTO = new HospitalResponseDTO();
+        hospitalResponseDTO.setServices(hospital.getServices());
+        return hospitalResponseDTO;
     }
 
     @Override
     protected Hospital convertToEntity(HospitalRequestDTO hospitalRequestDTO) throws IOException {
-        return null;
+        return updateEntity(hospitalRequestDTO,new Hospital());
     }
 
     @Override
     protected Hospital updateEntity(HospitalRequestDTO hospitalRequestDTO, Hospital entity) throws IOException {
-        return null;
+        entity.setServices(hospitalRequestDTO.getServices());
+        return entity;
     }
 
     @Override
