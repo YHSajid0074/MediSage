@@ -42,15 +42,9 @@ public class Doctor extends BaseEntity {
     @Column(name = "achievement")
     private List<String> achievements;
 
-
-    @ManyToMany
-    @JoinTable(
-            name = "doctor_hospital",
-            joinColumns = @JoinColumn(name = "doctor_id"),
-            inverseJoinColumns = @JoinColumn(name = "hospital_id")
-    )
+    @ManyToMany(mappedBy = "doctors", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<Hospital> hospitals = new HashSet<>();
 
-    @OneToOne(mappedBy = "doctor", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true)
     private Appointment appointment;
 }

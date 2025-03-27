@@ -59,8 +59,23 @@ public class Hospital extends BaseEntity {
     @Column(name = "established_year")
     private Integer establishedYear;
 
-    @ManyToMany(mappedBy = "hospitals")
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+            name = "doctor_hospital",
+            joinColumns = @JoinColumn(name = "hospital_id"),
+            inverseJoinColumns = @JoinColumn(name = "doctor_id")
+    )
     private Set<Doctor> doctors = new HashSet<>();
 
+    // Helper methods for bidirectional synchronization
+    public void addDoctor(Doctor doctor) {
+        this.doctors.add(doctor);
+        doctor.getHospitals().add(this);
+    }
+
+    public void removeDoctor(Doctor doctor) {
+        this.doctors.remove(doctor);
+        doctor.getHospitals().remove(this);
+    }
 }
 
