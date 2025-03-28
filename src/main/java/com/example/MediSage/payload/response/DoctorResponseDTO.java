@@ -11,6 +11,8 @@ import java.util.List;
 @Data
 public class DoctorResponseDTO extends BaseResponseDto {
 
+    private Long id;
+
     private String name;
 
     private String email;

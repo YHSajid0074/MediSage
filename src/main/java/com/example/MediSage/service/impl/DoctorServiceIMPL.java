@@ -22,7 +22,13 @@ public class DoctorServiceIMPL extends AbstractService<Doctor, DoctorRequestDTO,
     protected DoctorResponseDTO convertToResponseDto(Doctor doctor) {
         DoctorResponseDTO doctorResponseDTO = new DoctorResponseDTO();
         doctorResponseDTO.setAchievements(doctor.getAchievements());
-        doctorResponseDTO.setAchievements(doctor.getAchievements());
+        doctorResponseDTO.setCertifications(doctor.getCertifications());
+       doctorResponseDTO.setName(doctor.getName());
+       doctorResponseDTO.setPhone(doctor.getPhone());
+       doctorResponseDTO.setPicture(doctor.getPicture());
+       doctorResponseDTO.setSpecialization(doctor.getSpecialization());
+       doctorResponseDTO.setEmail(doctor.getEmail());
+       doctorResponseDTO.setId(doctor.getId());
         return doctorResponseDTO;
     }
 
@@ -34,7 +40,11 @@ public class DoctorServiceIMPL extends AbstractService<Doctor, DoctorRequestDTO,
     @Override
     protected Doctor updateEntity(DoctorRequestDTO doctorRequestDTO, Doctor entity) throws IOException {
         entity.setAchievements(doctorRequestDTO.getAchievements());
-        entity.setAchievements(doctorRequestDTO.getAchievements());
+        entity.setCertifications(doctorRequestDTO.getCertifications());
+        entity.setName(doctorRequestDTO.getName());
+        entity.setPhone(doctorRequestDTO.getPhone());
+        entity.setSpecialization(doctorRequestDTO.getSpecialization());
+        entity.setEmail(doctorRequestDTO.getEmail());
         return entity;
     }
 
