@@ -3,6 +3,7 @@ package com.example.MediSage.entity.patients;
 import com.example.MediSage.entity.aisummary.AiSummary;
 import com.example.MediSage.entity.appointment.Appointment;
 import com.example.MediSage.generic.model.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -68,6 +69,7 @@ public class Patients extends BaseEntity {
     private String bloodType;
 
     @OneToOne(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private Appointment appointment;
 
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)

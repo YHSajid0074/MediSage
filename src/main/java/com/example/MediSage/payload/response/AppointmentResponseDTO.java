@@ -3,10 +3,6 @@ package com.example.MediSage.payload.response;
 import com.example.MediSage.entity.doctor.Doctor;
 import com.example.MediSage.entity.patients.Patients;
 import com.example.MediSage.generic.payload.response.BaseResponseDto;
-import jakarta.validation.constraints.Future;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 import java.time.LocalDateTime;

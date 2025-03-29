@@ -3,6 +3,7 @@ package com.example.MediSage.entity.doctor;
 import com.example.MediSage.entity.appointment.Appointment;
 import com.example.MediSage.entity.hospital.Hospital;
 import com.example.MediSage.generic.model.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -46,5 +47,6 @@ public class Doctor extends BaseEntity {
     private Set<Hospital> hospitals = new HashSet<>();
 
     @OneToOne(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private Appointment appointment;
 }

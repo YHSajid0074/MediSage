@@ -8,8 +8,8 @@ import com.example.MediSage.payload.request.AppointmentRequestDTO;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping
-@RestController("Appointment")
+@RequestMapping("Appointment")
+@RestController
 public class AppointmentController extends AbstractController<Appointment, AppointmentRequestDTO, GenericSearchDto> {
     public AppointmentController(IService<Appointment, AppointmentRequestDTO, GenericSearchDto> service) {
         super(service);
