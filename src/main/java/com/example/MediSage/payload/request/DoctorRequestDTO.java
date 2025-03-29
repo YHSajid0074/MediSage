@@ -24,7 +24,7 @@ public class DoctorRequestDTO implements IDto {
     @Size(max = 20, message = "Phone number cannot exceed 20 characters")
     private String phone;
 
-//    private MultipartFile picture;
+    private MultipartFile picture;
 
     @NotBlank(message = "Specialization is required")
     @Size(max = 255, message = "Specialization cannot exceed 255 characters")
