@@ -2,7 +2,6 @@ package com.example.MediSage.controller;
 
 import com.example.MediSage.entity.doctor.Doctor;
 import com.example.MediSage.generic.controller.AbstractController;
-import com.example.MediSage.generic.payload.request.GenericSearchDto;
 import com.example.MediSage.generic.service.IService;
 import com.example.MediSage.payload.request.DoctorRequestDTO;
 import com.example.MediSage.payload.request.DoctorSearchDTO;
