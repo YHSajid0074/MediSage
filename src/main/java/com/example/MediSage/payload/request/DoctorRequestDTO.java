@@ -34,4 +34,6 @@ public class DoctorRequestDTO implements IDto {
 
     private List<String> achievements;
 
+    private Long userId;
+
 }

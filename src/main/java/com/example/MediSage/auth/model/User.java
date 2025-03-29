@@ -1,4 +1,6 @@
 package com.example.MediSage.auth.model;
+import com.example.MediSage.entity.doctor.Doctor;
+import com.example.MediSage.entity.patients.Patients;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
@@ -42,5 +44,12 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "roles_id")
     )
     private Set<Role> roles = new LinkedHashSet<>();
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Patients patient;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Doctor doctor;
+
 }
 

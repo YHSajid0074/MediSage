@@ -1,5 +1,6 @@
 package com.example.MediSage.entity.patients;
 
+import com.example.MediSage.auth.model.User;
 import com.example.MediSage.entity.aisummary.AiSummary;
 import com.example.MediSage.entity.appointment.Appointment;
 import com.example.MediSage.generic.model.BaseEntity;
@@ -74,4 +75,9 @@ public class Patients extends BaseEntity {
 
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<AiSummary> aiSummaries = new HashSet<>();
+
+    @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JsonIgnore
+    private User user;
 }

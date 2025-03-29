@@ -1,5 +1,6 @@
 package com.example.MediSage.service.impl;
 
+import com.example.MediSage.auth.repository.UserRepo;
 import com.example.MediSage.config.image.service.CloudneryImageService;
 import com.example.MediSage.entity.doctor.Doctor;
 import com.example.MediSage.generic.payload.response.PageData;
@@ -29,6 +30,9 @@ public class DoctorServiceIMPL extends AbstractService<Doctor, DoctorRequestDTO,
 
     @Autowired
     DoctorRepository doctorRepository;
+
+    @Autowired
+    UserRepo userRepo;
 
     public DoctorServiceIMPL(AbstractRepository<Doctor> repository) {
         super(repository);
@@ -61,6 +65,7 @@ public class DoctorServiceIMPL extends AbstractService<Doctor, DoctorRequestDTO,
         entity.setPhone(doctorRequestDTO.getPhone());
         entity.setSpecialization(doctorRequestDTO.getSpecialization());
         entity.setEmail(doctorRequestDTO.getEmail());
+        entity.setUser(userRepo.findById(doctorRequestDTO.getUserId()).get());
         return entity;
     }
 
@@ -75,6 +80,7 @@ public class DoctorServiceIMPL extends AbstractService<Doctor, DoctorRequestDTO,
             profileImageUrl = (String) heroUploadResult.get("secure_url");
         }
 
+        entity.setUser(userRepo.findById(doctorRequestDTO.getUserId()).get());
         entity.setAchievements(doctorRequestDTO.getAchievements());
         entity.setCertifications(doctorRequestDTO.getCertifications());
         entity.setName(doctorRequestDTO.getName());

@@ -64,5 +64,7 @@ public class PatientsRequestDTO implements IDto {
     @Size(max = 5, message = "Blood type cannot exceed 5 characters")
     private String bloodType;
 
+    private long userId;
+
 
 }

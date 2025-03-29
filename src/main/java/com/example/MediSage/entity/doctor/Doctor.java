@@ -1,5 +1,6 @@
 package com.example.MediSage.entity.doctor;
 
+import com.example.MediSage.auth.model.User;
 import com.example.MediSage.entity.appointment.Appointment;
 import com.example.MediSage.entity.hospital.Hospital;
 import com.example.MediSage.generic.model.BaseEntity;
@@ -49,4 +50,9 @@ public class Doctor extends BaseEntity {
     @OneToOne(mappedBy = "doctor", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private Appointment appointment;
+
+    @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @JsonIgnore
+    private User user;
 }

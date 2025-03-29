@@ -1,5 +1,6 @@
 package com.example.MediSage.service.impl;
 
+import com.example.MediSage.auth.repository.UserRepo;
 import com.example.MediSage.config.image.service.CloudneryImageService;
 import com.example.MediSage.entity.patients.Patients;
 import com.example.MediSage.generic.payload.request.GenericSearchDto;
@@ -29,6 +30,9 @@ public class PatientsServiceIMPL extends AbstractService<Patients, PatientsReque
     @Autowired
     PatientsRepository patientsRepository;
 
+    @Autowired
+    UserRepo userRepo;
+
 
     @Override
     protected PatientsResponseDTO convertToResponseDto(Patients patients) {
@@ -49,6 +53,7 @@ public class PatientsServiceIMPL extends AbstractService<Patients, PatientsReque
         patientsResponseDTO.setBloodType(patients.getBloodType());
         patientsResponseDTO.setMedicalHistory(patients.getMedicalHistory());
         patientsResponseDTO.setPicture(patients.getPicture());
+
         return patientsResponseDTO;
     }
 
@@ -73,6 +78,7 @@ public class PatientsServiceIMPL extends AbstractService<Patients, PatientsReque
         entity.setCountry(patientsRequestDTO.getCountry());
         entity.setBloodType(patientsRequestDTO.getBloodType());
         entity.setMedicalHistory(patientsRequestDTO.getMedicalHistory());
+        entity.setUser(userRepo.findById(patientsRequestDTO.getUserId()).get());
         return entity;
     }
 
@@ -92,6 +98,7 @@ public class PatientsServiceIMPL extends AbstractService<Patients, PatientsReque
             Map<String, Object> heroUploadResult = cloudneryImageService.upload(profilepic);
             profileImageUrl = (String) heroUploadResult.get("secure_url");
         }
+        entity.setUser(userRepo.findById(patientsRequestDTO.getUserId()).get());
         entity.setAddress(patientsRequestDTO.getAddress());
         entity.setFirstName(patientsRequestDTO.getFirstName());
         entity.setLastName(patientsRequestDTO.getLastName());
