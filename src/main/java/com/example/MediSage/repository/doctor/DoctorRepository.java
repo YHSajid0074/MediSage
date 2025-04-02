@@ -13,8 +13,8 @@ public interface DoctorRepository extends AbstractRepository<Doctor> {
 
     @Query("""
     SELECT d FROM Doctor d
-    WHERE (:name IS NULL OR LOWER(d.name) LIKE LOWER(CONCAT('%', :name, '%')))
-    AND (:specialization IS NULL OR LOWER(d.specialization) LIKE LOWER(CONCAT('%', :specialization, '%')))
+    WHERE (COALESCE(:name, '') = '' OR LOWER(d.name) LIKE LOWER(CONCAT('%', :name, '%')))
+    AND (COALESCE(:specialization, '') = '' OR LOWER(d.specialization) LIKE LOWER(CONCAT('%', :specialization, '%')))
     AND d.isActive = :isActive
 """)
     Page<Doctor> searchDoctors(

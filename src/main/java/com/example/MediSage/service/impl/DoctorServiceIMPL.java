@@ -116,5 +116,4 @@ public class DoctorServiceIMPL extends AbstractService<Doctor, DoctorRequestDTO,
                 .build();
     }
 
-
 }

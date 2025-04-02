@@ -23,6 +23,7 @@ public class UserController {
         this.userService = userService;
     }
 
+
     @PostMapping(value = "/add", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity< String > create(@ModelAttribute UserRequestDTO requestDto) throws IOException {
       String s=  userService.create(requestDto);
