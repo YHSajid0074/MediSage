@@ -6,4 +6,5 @@ import com.example.MediSage.generic.service.IService;
 import com.example.MediSage.payload.request.PatientsRequestDTO;
 
 public interface PatientsService extends IService<Patients, PatientsRequestDTO, GenericSearchDto> {
+
 }
