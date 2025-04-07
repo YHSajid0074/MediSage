@@ -21,19 +21,10 @@ import java.util.Set;
 @AllArgsConstructor
 public class Patients extends BaseEntity {
 
-    @Column(name = "first_name", length = 100)
-    private String firstName;
+    @Column(name = "fullname", length = 100)
+    private String fullName;
 
-    @Column(name = "last_name", length = 100)
-    private String lastName;
-
-    @Column(name = "email", unique = true, length = 255)
-    private String email;
-
-    private String picture;
-
-    @Column(name = "phone", length = 20)
-    private String phone;
+    private String healthGoals;
 
     @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
@@ -41,33 +32,20 @@ public class Patients extends BaseEntity {
     @Column(name = "gender", length = 10)
     private String gender;
 
-    @Column(name = "address", columnDefinition = "TEXT")
-    private String address;
+    private Long weight;
 
-    @Column(name = "city", length = 100)
-    private String city;
+    private Long height;
 
-    @Column(name = "state", length = 100)
-    private String state;
+    private String eatingHabit;
 
-    @Column(name = "country", length = 100)
-    private String country;
+    private String medications;
 
-    @Column(name = "zip_code", length = 20)
-    private String zipCode;
-
-    @ElementCollection
-    @CollectionTable(name = "patient_medical_history", joinColumns = @JoinColumn(name = "patient_id"))
-    @Column(name = "medical_condition")
-    private List<String> medicalHistory;
-
-    @ElementCollection
-    @CollectionTable(name = "patient_allergies", joinColumns = @JoinColumn(name = "patient_id"))
-    @Column(name = "allergy")
-    private List<String> allergies;
+    private String medicalConditions;
 
     @Column(name = "blood_type", length = 5)
     private String bloodType;
+
+    private String healthNotes;
 
     @OneToOne(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore

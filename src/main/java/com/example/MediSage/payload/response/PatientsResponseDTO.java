@@ -10,33 +10,15 @@ import java.util.List;
 @Data
 public class PatientsResponseDTO extends BaseResponseDto {
 
-    private String firstName;
-
-    private String lastName;
-
-    private String email;
-
-    private String picture;
-
-    private String phone;
-
+    private String fullName;
+    private String healthGoals;
     private LocalDate dateOfBirth;
-
     private String gender;
-
-    private String address;
-
-    private String city;
-
-    private String state;
-
-    private String country;
-
-    private String zipCode;
-
-    private List<String> medicalHistory;
-
-    private List<String> allergies;
-
+    private Long weight;
+    private Long height;
+    private String eatingHabit;
+    private String medications;
+    private String medicalConditions;
     private String bloodType;
+    private String healthNotes;
 }

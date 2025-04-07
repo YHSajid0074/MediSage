@@ -18,14 +18,16 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.Map;
 
+
 @Service
 public class PatientsServiceIMPL extends AbstractService<Patients, PatientsRequestDTO, GenericSearchDto> implements PatientsService {
+
     public PatientsServiceIMPL(AbstractRepository<Patients> repository) {
         super(repository);
     }
 
     @Autowired
-     CloudneryImageService cloudneryImageService;
+    CloudneryImageService cloudneryImageService;
 
     @Autowired
     PatientsRepository patientsRepository;
@@ -33,52 +35,42 @@ public class PatientsServiceIMPL extends AbstractService<Patients, PatientsReque
     @Autowired
     UserRepo userRepo;
 
-
     @Override
     protected PatientsResponseDTO convertToResponseDto(Patients patients) {
-
-        PatientsResponseDTO patientsResponseDTO = new PatientsResponseDTO();
-        patientsResponseDTO.setAddress(patients.getAddress());
-        patientsResponseDTO.setFirstName(patients.getFirstName());
-        patientsResponseDTO.setLastName(patients.getLastName());
-        patientsResponseDTO.setEmail(patients.getEmail());
-        patientsResponseDTO.setPhone(patients.getPhone());
-        patientsResponseDTO.setCity(patients.getCity());
-        patientsResponseDTO.setState(patients.getState());
-        patientsResponseDTO.setZipCode(patients.getZipCode());
-        patientsResponseDTO.setGender(patients.getGender());
-        patientsResponseDTO.setDateOfBirth(patients.getDateOfBirth());
-        patientsResponseDTO.setAllergies(patients.getAllergies());
-        patientsResponseDTO.setCountry(patients.getCountry());
-        patientsResponseDTO.setBloodType(patients.getBloodType());
-        patientsResponseDTO.setMedicalHistory(patients.getMedicalHistory());
-        patientsResponseDTO.setPicture(patients.getPicture());
-
-        return patientsResponseDTO;
+        PatientsResponseDTO dto = new PatientsResponseDTO();
+        dto.setFullName(patients.getFullName());
+        dto.setHealthGoals(patients.getHealthGoals());
+        dto.setDateOfBirth(patients.getDateOfBirth());
+        dto.setGender(patients.getGender());
+        dto.setWeight(patients.getWeight());
+        dto.setHeight(patients.getHeight());
+        dto.setEatingHabit(patients.getEatingHabit());
+        dto.setMedications(patients.getMedications());
+        dto.setMedicalConditions(patients.getMedicalConditions());
+        dto.setBloodType(patients.getBloodType());
+        dto.setHealthNotes(patients.getHealthNotes());
+        return dto;
     }
 
     @Override
-    protected Patients convertToEntity(PatientsRequestDTO patientsRequestDTO) throws IOException {
-        return updateEntity(patientsRequestDTO,new Patients());
+    protected Patients convertToEntity(PatientsRequestDTO dto) throws IOException {
+        return updateEntity(dto, new Patients());
     }
 
     @Override
-    protected Patients updateEntity(PatientsRequestDTO patientsRequestDTO, Patients entity) throws IOException {
-        entity.setAddress(patientsRequestDTO.getAddress());
-        entity.setFirstName(patientsRequestDTO.getFirstName());
-        entity.setLastName(patientsRequestDTO.getLastName());
-        entity.setEmail(patientsRequestDTO.getEmail());
-        entity.setPhone(patientsRequestDTO.getPhone());
-        entity.setCity(patientsRequestDTO.getCity());
-        entity.setState(patientsRequestDTO.getState());
-        entity.setZipCode(patientsRequestDTO.getZipCode());
-        entity.setGender(patientsRequestDTO.getGender());
-        entity.setDateOfBirth(patientsRequestDTO.getDateOfBirth());
-        entity.setAllergies(patientsRequestDTO.getAllergies());
-        entity.setCountry(patientsRequestDTO.getCountry());
-        entity.setBloodType(patientsRequestDTO.getBloodType());
-        entity.setMedicalHistory(patientsRequestDTO.getMedicalHistory());
-        entity.setUser(userRepo.findById(patientsRequestDTO.getUserId()).get());
+    protected Patients updateEntity(PatientsRequestDTO dto, Patients entity) throws IOException {
+        entity.setFullName(dto.getFullName());
+        entity.setHealthGoals(dto.getHealthGoals());
+        entity.setDateOfBirth(dto.getDateOfBirth());
+        entity.setGender(dto.getGender());
+        entity.setWeight(dto.getWeight());
+        entity.setHeight(dto.getHeight());
+        entity.setEatingHabit(dto.getEatingHabit());
+        entity.setMedications(dto.getMedications());
+        entity.setMedicalConditions(dto.getMedicalConditions());
+        entity.setBloodType(dto.getBloodType());
+        entity.setHealthNotes(dto.getHealthNotes());
+        entity.setUser(userRepo.findById(dto.getUserId()).orElseThrow(() -> new RuntimeException("User not found")));
         return entity;
     }
 
@@ -86,34 +78,31 @@ public class PatientsServiceIMPL extends AbstractService<Patients, PatientsReque
     protected Specification<Patients> buildSpecification(GenericSearchDto searchDto) {
         return null;
     }
-
-
-    public void createPatient(PatientsRequestDTO patientsRequestDTO, MultipartFile profilepic) throws IOException {
-
-        Patients entity = new Patients();
-
-        String profileImageUrl = "https://res.cloudinary.com/dxmwiwy6g/image/upload/v1740298839/jhp0yhawmfwffy195dn8.jpg";
-
-        if (profilepic != null) {
-            Map<String, Object> heroUploadResult = cloudneryImageService.upload(profilepic);
-            profileImageUrl = (String) heroUploadResult.get("secure_url");
-        }
-        entity.setUser(userRepo.findById(patientsRequestDTO.getUserId()).get());
-        entity.setAddress(patientsRequestDTO.getAddress());
-        entity.setFirstName(patientsRequestDTO.getFirstName());
-        entity.setLastName(patientsRequestDTO.getLastName());
-        entity.setEmail(patientsRequestDTO.getEmail());
-        entity.setPhone(patientsRequestDTO.getPhone());
-        entity.setCity(patientsRequestDTO.getCity());
-        entity.setState(patientsRequestDTO.getState());
-        entity.setZipCode(patientsRequestDTO.getZipCode());
-        entity.setGender(patientsRequestDTO.getGender());
-        entity.setDateOfBirth(patientsRequestDTO.getDateOfBirth());
-        entity.setAllergies(patientsRequestDTO.getAllergies());
-        entity.setCountry(patientsRequestDTO.getCountry());
-        entity.setBloodType(patientsRequestDTO.getBloodType());
-        entity.setMedicalHistory(patientsRequestDTO.getMedicalHistory());
-        entity.setPicture(profileImageUrl);
-    }
-
+//
+//    public void createPatient(PatientsRequestDTO dto, MultipartFile profilepic) throws IOException {
+//        Patients entity = new Patients();
+//
+//        String profileImageUrl = "https://res.cloudinary.com/dxmwiwy6g/image/upload/v1740298839/jhp0yhawmfwffy195dn8.jpg";
+//
+//        if (profilepic != null) {
+//            Map<String, Object> uploadResult = cloudneryImageService.upload(profilepic);
+//            profileImageUrl = (String) uploadResult.get("secure_url");
+//        }
+//
+//        entity.setFullName(dto.getFullName());
+//        entity.setHealthGoals(dto.getHealthGoals());
+//        entity.setDateOfBirth(dto.getDateOfBirth());
+//        entity.setGender(dto.getGender());
+//        entity.setWeight(dto.getWeight());
+//        entity.setHeight(dto.getHeight());
+//        entity.setEatingHabit(dto.getEatingHabit());
+//        entity.setMedications(dto.getMedications());
+//        entity.setMedicalConditions(dto.getMedicalConditions());
+//        entity.setBloodType(dto.getBloodType());
+//        entity.setHealthNotes(dto.getHealthNotes());
+//        entity.setUser(userRepo.findById(dto.getUserId()).orElseThrow(() -> new RuntimeException("User not found")));
+//
+//        patientsRepository.save(entity);
+//    }
 }
+

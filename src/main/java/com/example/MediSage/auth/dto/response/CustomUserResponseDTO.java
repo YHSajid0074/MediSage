@@ -10,12 +10,6 @@ public interface CustomUserResponseDTO {
 
     String getEmail();
 
-    StudentInfo getStudent();
-
-    interface StudentInfo {
-        Long getId();
-    }
-
     Set< RoleInfo > getRoles();
 
     interface RoleInfo {
