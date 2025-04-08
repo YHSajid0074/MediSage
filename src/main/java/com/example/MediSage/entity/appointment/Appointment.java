@@ -2,11 +2,13 @@ package com.example.MediSage.entity.appointment;
 
 import com.example.MediSage.entity.doctor.Doctor;
 import com.example.MediSage.entity.patients.Patients;
+import com.example.MediSage.entity.symptoms.entity.Symptoms;
 import com.example.MediSage.generic.model.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "appointments")
@@ -38,6 +40,11 @@ public class Appointment extends BaseEntity {
 
     @Column(name = "prescription")
     private String prescription;
+
+    @ManyToOne
+    @JoinColumn(name = "symptom_id")
+    private Symptoms symptoms;
+
 
     // Helper methods for bidirectional synchronization
     public void setDoctor(Doctor doctor) {
