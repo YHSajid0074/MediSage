@@ -21,6 +21,7 @@ public interface CustomUserResponseDTO {
 
     PatientsInfo getPatient();
     interface PatientsInfo {
+        Long getId();
         String getFullName();
         String getHealthGoals();
          LocalDate getDateOfBirth();
