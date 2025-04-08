@@ -30,7 +30,7 @@ public interface UserRepo extends JpaRepository<User, Long > {
 
     boolean existsByEmail( String email );
 
-    @EntityGraph( attributePaths = { "roles" } )
+    @EntityGraph( attributePaths = { "roles","patient" } )
     @Query( """
                 SELECT
                     user
