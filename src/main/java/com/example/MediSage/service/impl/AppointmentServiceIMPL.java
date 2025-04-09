@@ -1,6 +1,8 @@
 package com.example.MediSage.service.impl;
 
 import com.example.MediSage.entity.appointment.Appointment;
+import com.example.MediSage.entity.doctor.Doctor;
+import com.example.MediSage.entity.patients.Patients;
 import com.example.MediSage.entity.symptoms.entity.Symptoms;
 import com.example.MediSage.entity.symptoms.repository.SymptomsRepository;
 import com.example.MediSage.generic.payload.request.GenericSearchDto;
@@ -18,6 +20,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -69,17 +72,25 @@ public class AppointmentServiceIMPL extends AbstractService<Appointment, Appoint
         entity.setAiSummary(appointmentRequestDTO.getAiSummary());
         entity.setNotes(appointmentRequestDTO.getNotes());
         entity.setPrescription(appointmentRequestDTO.getPrescription());
-        entity.setDoctor(doctorRepository.findById(appointmentRequestDTO.getDoctorId()).get());
-        entity.setPatient(patientsRepository.findById(appointmentRequestDTO.getPatientId()).get());
 
+        Doctor doctor = doctorRepository.findById(appointmentRequestDTO.getDoctorId())
+                .orElseThrow(() -> new IllegalArgumentException("Doctor not found with ID: " + appointmentRequestDTO.getDoctorId()));
+        entity.setDoctor(doctor);
+
+        Patients patient = patientsRepository.findById(appointmentRequestDTO.getPatientId())
+                .orElseThrow(() -> new IllegalArgumentException("Patient not found with ID: " + appointmentRequestDTO.getPatientId()));
+        entity.setPatient(patient);
 
         if (appointmentRequestDTO.getSymptomIds() != null && !appointmentRequestDTO.getSymptomIds().isEmpty()) {
             List<Symptoms> symptoms = symptomsRepository.findAllById(appointmentRequestDTO.getSymptomIds());
             entity.setSymptoms(symptoms);
+        } else {
+            entity.setSymptoms(Collections.emptyList()); // বা null রাখো যদি সেটাই দরকার হয়
         }
 
         return entity;
     }
+
 
     @Override
     protected Specification<Appointment> buildSpecification(GenericSearchDto searchDto) {
