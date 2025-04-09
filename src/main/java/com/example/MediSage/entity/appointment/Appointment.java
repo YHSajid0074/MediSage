@@ -41,10 +41,13 @@ public class Appointment extends BaseEntity {
     @Column(name = "prescription")
     private String prescription;
 
-    @ManyToOne
-    @JoinColumn(name = "symptom_id")
-    private Symptoms symptoms;
-
+    @ManyToMany
+    @JoinTable(
+            name = "appointment_symptoms",
+            joinColumns = @JoinColumn(name = "appointment_id"),
+            inverseJoinColumns = @JoinColumn(name = "symptom_id")
+    )
+    private List<Symptoms> symptoms;
 
     // Helper methods for bidirectional synchronization
     public void setDoctor(Doctor doctor) {

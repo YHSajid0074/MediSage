@@ -8,6 +8,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 public class AppointmentRequestDTO implements IDto {
@@ -27,6 +28,8 @@ public class AppointmentRequestDTO implements IDto {
     private String status;
 
     private String aiSummary;
+
+    private List<Long> symptomIds;
 
     private String notes;
 

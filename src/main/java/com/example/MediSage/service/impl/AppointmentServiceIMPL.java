@@ -1,6 +1,8 @@
 package com.example.MediSage.service.impl;
 
 import com.example.MediSage.entity.appointment.Appointment;
+import com.example.MediSage.entity.symptoms.entity.Symptoms;
+import com.example.MediSage.entity.symptoms.repository.SymptomsRepository;
 import com.example.MediSage.generic.payload.request.GenericSearchDto;
 import com.example.MediSage.generic.payload.response.BaseResponseDto;
 import com.example.MediSage.generic.repository.AbstractRepository;
@@ -16,6 +18,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.List;
 
 @Service
 public class AppointmentServiceIMPL extends AbstractService<Appointment, AppointmentRequestDTO, GenericSearchDto> implements AppointmentService {
@@ -29,6 +32,9 @@ public class AppointmentServiceIMPL extends AbstractService<Appointment, Appoint
 
   @Autowired
   DoctorRepository doctorRepository;
+
+  @Autowired
+  SymptomsRepository symptomsRepository;
 
     public AppointmentServiceIMPL(AbstractRepository<Appointment> repository) {
         super(repository);
@@ -65,6 +71,12 @@ public class AppointmentServiceIMPL extends AbstractService<Appointment, Appoint
         entity.setPrescription(appointmentRequestDTO.getPrescription());
         entity.setDoctor(doctorRepository.findById(appointmentRequestDTO.getDoctorId()).get());
         entity.setPatient(patientsRepository.findById(appointmentRequestDTO.getPatientId()).get());
+
+
+        if (appointmentRequestDTO.getSymptomIds() != null && !appointmentRequestDTO.getSymptomIds().isEmpty()) {
+            List<Symptoms> symptoms = symptomsRepository.findAllById(appointmentRequestDTO.getSymptomIds());
+            entity.setSymptoms(symptoms);
+        }
 
         return entity;
     }
