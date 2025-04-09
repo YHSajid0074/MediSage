@@ -49,6 +49,10 @@ public class Appointment extends BaseEntity {
     )
     private List<Symptoms> symptoms;
 
+    @ElementCollection
+    private List<String>SymptomsPart;
+
+
     // Helper methods for bidirectional synchronization
     public void setDoctor(Doctor doctor) {
         if (this.doctor != null) {

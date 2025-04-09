@@ -31,6 +31,8 @@ public class AppointmentRequestDTO implements IDto {
 
     private List<Long> symptomIds;
 
+    private List<String>SymptomsPart;
+
     private String notes;
 
     private String prescription;

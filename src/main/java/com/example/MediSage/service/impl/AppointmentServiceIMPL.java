@@ -88,6 +88,8 @@ public class AppointmentServiceIMPL extends AbstractService<Appointment, Appoint
             entity.setSymptoms(Collections.emptyList()); // বা null রাখো যদি সেটাই দরকার হয়
         }
 
+        entity.setSymptomsPart(appointmentRequestDTO.getSymptomsPart());
+
         return entity;
     }
 
