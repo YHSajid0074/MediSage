@@ -48,7 +48,6 @@ public class SymptomsLogServiceImpl extends AbstractService<SymptomLogs, Symptom
         SymptomsLogResponseDTO symptomsLogResponseDTO = new SymptomsLogResponseDTO();
 
         symptomsLogResponseDTO.setAppointmentDate(symptomLogs.getAppointmentDate());
-        symptomsLogResponseDTO.setPatient(symptomLogs.getPatient());
         symptomsLogResponseDTO.setSymptomsPart(symptomLogs.getSymptomsPart());
         symptomsLogResponseDTO.setSymptoms(symptomLogs.getSymptoms());
 

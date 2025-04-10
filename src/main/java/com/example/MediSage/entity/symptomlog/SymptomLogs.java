@@ -4,6 +4,8 @@ import com.example.MediSage.entity.doctor.Doctor;
 import com.example.MediSage.entity.patients.Patients;
 import com.example.MediSage.entity.symptoms.entity.Symptoms;
 import com.example.MediSage.generic.model.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "appointments")
+@Table(name = "symptomsLog")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -25,6 +27,7 @@ public class SymptomLogs extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "patient_id")
+    @JsonIgnore
     private Patients patient;
 
     @Column(name = "appointment_date")

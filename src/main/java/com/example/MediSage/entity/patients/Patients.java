@@ -5,6 +5,7 @@ import com.example.MediSage.entity.aisummary.AiSummary;
 import com.example.MediSage.entity.symptomlog.SymptomLogs;
 import com.example.MediSage.generic.model.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -48,7 +49,7 @@ public class Patients extends BaseEntity {
     private String healthNotes;
 
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
+
     private List<SymptomLogs> symptomLogs;
 
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)

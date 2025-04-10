@@ -12,8 +12,6 @@ import java.util.List;
 @Data
 public class SymptomsLogResponseDTO extends BaseResponseDto {
 
-    private Patients patient;
-
     private LocalDateTime appointmentDate;
 
     List<Symptoms> symptoms;
