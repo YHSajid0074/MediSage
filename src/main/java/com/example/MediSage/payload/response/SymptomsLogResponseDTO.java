@@ -2,25 +2,21 @@ package com.example.MediSage.payload.response;
 
 import com.example.MediSage.entity.doctor.Doctor;
 import com.example.MediSage.entity.patients.Patients;
+import com.example.MediSage.entity.symptoms.entity.Symptoms;
 import com.example.MediSage.generic.payload.response.BaseResponseDto;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
-public class AppointmentResponseDTO extends BaseResponseDto {
-
-    private Doctor doctor;
+public class SymptomsLogResponseDTO extends BaseResponseDto {
 
     private Patients patient;
 
     private LocalDateTime appointmentDate;
 
-    private String status;
+    List<Symptoms> symptoms;
 
-    private String aiSummary;
-
-    private String notes;
-
-    private String prescription;
+    private List<String> SymptomsPart;
 }

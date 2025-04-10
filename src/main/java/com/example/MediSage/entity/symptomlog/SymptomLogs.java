@@ -1,4 +1,4 @@
-package com.example.MediSage.entity.appointment;
+package com.example.MediSage.entity.symptomlog;
 
 import com.example.MediSage.entity.doctor.Doctor;
 import com.example.MediSage.entity.patients.Patients;
@@ -16,7 +16,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Appointment extends BaseEntity {
+public class SymptomLogs extends BaseEntity {
 
     @OneToOne
     @JoinColumn(name = "doctor_id")
@@ -56,21 +56,21 @@ public class Appointment extends BaseEntity {
     // Helper methods for bidirectional synchronization
     public void setDoctor(Doctor doctor) {
         if (this.doctor != null) {
-            this.doctor.setAppointment(null);
+            this.doctor.setSymptomLogs(null);
         }
         this.doctor = doctor;
         if (doctor != null) {
-            doctor.setAppointment(this);
+            doctor.setSymptomLogs(this);
         }
     }
 
     public void setPatient(Patients patient) {
         if (this.patient != null) {
-            this.patient.setAppointment(null);
+            this.patient.setSymptomLogs(null);
         }
         this.patient = patient;
         if (patient != null) {
-            patient.setAppointment(this);
+            patient.setSymptomLogs(this);
         }
     }
 }

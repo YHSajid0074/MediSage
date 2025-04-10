@@ -2,7 +2,7 @@ package com.example.MediSage.entity.patients;
 
 import com.example.MediSage.auth.model.User;
 import com.example.MediSage.entity.aisummary.AiSummary;
-import com.example.MediSage.entity.appointment.Appointment;
+import com.example.MediSage.entity.symptomlog.SymptomLogs;
 import com.example.MediSage.generic.model.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -10,7 +10,6 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -49,7 +48,7 @@ public class Patients extends BaseEntity {
 
     @OneToOne(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
-    private Appointment appointment;
+    private SymptomLogs symptomLogs;
 
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<AiSummary> aiSummaries = new HashSet<>();
