@@ -10,6 +10,7 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -46,9 +47,9 @@ public class Patients extends BaseEntity {
 
     private String healthNotes;
 
-    @OneToOne(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
-    private SymptomLogs symptomLogs;
+    private List<SymptomLogs> symptomLogs;
 
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<AiSummary> aiSummaries = new HashSet<>();

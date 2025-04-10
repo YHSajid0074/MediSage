@@ -8,6 +8,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,7 +23,7 @@ public class SymptomLogs extends BaseEntity {
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "patient_id")
     private Patients patient;
 
@@ -47,30 +48,30 @@ public class SymptomLogs extends BaseEntity {
             joinColumns = @JoinColumn(name = "appointment_id"),
             inverseJoinColumns = @JoinColumn(name = "symptom_id")
     )
-    private List<Symptoms> symptoms;
+    private List<Symptoms> symptoms=new ArrayList<>();
 
     @ElementCollection
     private List<String>SymptomsPart;
 
 
-    // Helper methods for bidirectional synchronization
-    public void setDoctor(Doctor doctor) {
-        if (this.doctor != null) {
-            this.doctor.setSymptomLogs(null);
-        }
-        this.doctor = doctor;
-        if (doctor != null) {
-            doctor.setSymptomLogs(this);
-        }
-    }
-
-    public void setPatient(Patients patient) {
-        if (this.patient != null) {
-            this.patient.setSymptomLogs(null);
-        }
-        this.patient = patient;
-        if (patient != null) {
-            patient.setSymptomLogs(this);
-        }
-    }
+//    // Helper methods for bidirectional synchronization
+//    public void setDoctor(Doctor doctor) {
+//        if (this.doctor != null) {
+//            this.doctor.setSymptomLogs(null);
+//        }
+//        this.doctor = doctor;
+//        if (doctor != null) {
+//            doctor.setSymptomLogs(this);
+//        }
+//    }
+//
+//    public void setPatient(Patients patient) {
+//        if (this.patient != null) {
+//            this.patient.setSymptomLogs(null);
+//        }
+//        this.patient = patient;
+//        if (patient != null) {
+//            patient.setSymptomLogs(this);
+//        }
+//    }
 }

@@ -3,11 +3,14 @@ package com.example.MediSage.service.impl;
 import com.example.MediSage.auth.repository.UserRepo;
 import com.example.MediSage.config.image.service.CloudneryImageService;
 import com.example.MediSage.entity.patients.Patients;
+import com.example.MediSage.entity.symptoms.entity.Symptoms;
 import com.example.MediSage.generic.payload.request.GenericSearchDto;
 import com.example.MediSage.generic.repository.AbstractRepository;
 import com.example.MediSage.generic.service.AbstractService;
 import com.example.MediSage.payload.request.PatientsRequestDTO;
 import com.example.MediSage.payload.response.PatientsResponseDTO;
+import com.example.MediSage.payload.response.SymptomsLogResponseDTO;
+import com.example.MediSage.payload.response.SymptomsLogResponseDTOV2;
 import com.example.MediSage.repository.patients.PatientsRepository;
 import com.example.MediSage.service.PatientsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +19,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -49,6 +55,20 @@ public class PatientsServiceIMPL extends AbstractService<Patients, PatientsReque
         dto.setMedicalConditions(patients.getMedicalConditions());
         dto.setBloodType(patients.getBloodType());
         dto.setHealthNotes(patients.getHealthNotes());
+
+
+        List<SymptomsLogResponseDTOV2> symptomLogDTOs = patients.getSymptomLogs().stream()
+                .map(log -> new SymptomsLogResponseDTOV2(
+                        log.getAppointmentDate(),
+                        log.getSymptoms(),
+                        log.getSymptomsPart()
+                ))
+                .collect(Collectors.toList());
+
+        dto.setSymptomLogs(symptomLogDTOs);
+
+
+
         return dto;
     }
 
