@@ -4,6 +4,8 @@ import com.example.MediSage.generic.payload.request.IDto;
 import com.example.MediSage.generic.payload.response.BaseResponseDto;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class ManualSymptomsCheckResponseDTO extends BaseResponseDto{
 
@@ -18,4 +20,6 @@ public class ManualSymptomsCheckResponseDTO extends BaseResponseDto{
     private String painLevel;
 
     private String additionalNotes;
+
+    private List<String> symptomsBother;
 }

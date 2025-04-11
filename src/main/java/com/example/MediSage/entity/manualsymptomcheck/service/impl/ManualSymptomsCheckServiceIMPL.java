@@ -29,6 +29,7 @@ public class ManualSymptomsCheckServiceIMPL extends AbstractService<ManualSympto
         responseDto.setAdditionalNotes(manualSymptomsCheck.getAdditionalNotes());
         responseDto.setPainLevel(manualSymptomsCheck.getPainLevel());
         responseDto.setSymptomStartDate(manualSymptomsCheck.getSymptomStartDate());
+        responseDto.setSymptomsBother(manualSymptomsCheck.getSymptomsBother());
         return responseDto;
     }
 
@@ -44,7 +45,8 @@ public class ManualSymptomsCheckServiceIMPL extends AbstractService<ManualSympto
        entity.setAdditionalNotes(manualSymptomsCheckRequestDTO.getAdditionalNotes());
        entity.setPainLevel(manualSymptomsCheckRequestDTO.getPainLevel());
        entity.setSymptomStartDate(manualSymptomsCheckRequestDTO.getSymptomStartDate());
-        return entity;
+       entity.setSymptomsBother(manualSymptomsCheckRequestDTO.getSymptomsBother());
+       return entity;
     }
 
     @Override
