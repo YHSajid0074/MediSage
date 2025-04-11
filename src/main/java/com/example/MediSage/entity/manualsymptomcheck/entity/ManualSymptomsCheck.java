@@ -25,4 +25,6 @@ public class ManualSymptomsCheck extends BaseEntity {
 
     private String additionalNotes;
 
+    private Long patientId;
+
 }

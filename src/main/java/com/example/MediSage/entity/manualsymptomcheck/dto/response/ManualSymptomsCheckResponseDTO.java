@@ -22,4 +22,6 @@ public class ManualSymptomsCheckResponseDTO extends BaseResponseDto{
     private String additionalNotes;
 
     private List<String> symptomsBother;
+
+    private Long patientId;
 }

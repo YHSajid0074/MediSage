@@ -19,4 +19,6 @@ public class ManualSymptomsCheckRequestDTO implements IDto {
     private String additionalNotes;
 
     private List<String> symptomsBother;
+
+    private Long patientId;
 }
